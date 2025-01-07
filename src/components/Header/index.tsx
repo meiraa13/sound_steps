@@ -17,7 +17,7 @@ export function Header() {
         gap='1rem'>
         <Link to='/'>Scales</Link>
         <Link to='/metronome'>Metronome</Link>
-        <Link to='/'>Exercises</Link>
+        <Link to='/exercises'>Exercises</Link>
       </Box>
       <Box hideFrom='md'>
         <DrawerRoot>
