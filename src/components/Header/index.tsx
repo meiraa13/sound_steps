@@ -8,6 +8,7 @@ export function Header() {
   return (
     <Box
       as='header'
+      shadow='sm'
       className='box-header'>
       <h2>Sound Steps</h2>
       <Box

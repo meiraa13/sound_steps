@@ -4,20 +4,26 @@ export interface IChildren {
   children: React.ReactNode
 }
 
+export interface IScales {
+  major: string[]
+  pentatonic: string[]
+}
+
 interface IScalesContext {
   chromaticScale: string[]
-  generateMajorScale: (note: string) => void
-  majorScales: string[]
-  setMajorScales: React.Dispatch<React.SetStateAction<string[]>>
+  generateMajorScale: (note: string) => string[]
+  generatePentatonicScale: (scale: string[]) => string[]
+  scales: null | IScales
+  setScales: React.Dispatch<React.SetStateAction<IScales | null>>
 }
 
 export const ScalesContext = createContext({} as IScalesContext)
 
 export function ScalesProvider({ children }: IChildren) {
   const chromaticScale = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"]
-  const [majorScales, setMajorScales] = useState<string[]>([])
+  const [scales, setScales] = useState<null | IScales>(null)
 
-  function generateMajorScale(note: string) {
+  function generateMajorScale(note: string): string[] {
     let index = chromaticScale.indexOf(note)
     const majorScale = [chromaticScale[index]]
 
@@ -30,11 +36,24 @@ export function ScalesProvider({ children }: IChildren) {
 
     majorScale.push(second, third, fourth, fifth, sixth, seventh)
 
-    setMajorScales(majorScale)
+    return majorScale
+  }
+
+  function generatePentatonicScale(scale: string[]): string[] {
+    const pentatonicScale = [scale[0], scale[1], scale[2], scale[4], scale[5]]
+
+    return pentatonicScale
   }
 
   return (
-    <ScalesContext.Provider value={{ chromaticScale, generateMajorScale, majorScales, setMajorScales }}>
+    <ScalesContext.Provider
+      value={{
+        chromaticScale,
+        generateMajorScale,
+        generatePentatonicScale,
+        scales,
+        setScales,
+      }}>
       {children}
     </ScalesContext.Provider>
   )
