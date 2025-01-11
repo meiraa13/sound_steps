@@ -10,16 +10,26 @@ type formValue = {
 }
 
 export function KeyForm() {
-  const { chromaticScale, generateMajorScale, generatePentatonicScale, setScales } = useContext(ScalesContext)
+  const {
+    sharpenedScale,
+    generateMajorScale,
+    generatePentatonicScale,
+    setScales,
+    generateDorianScale,
+    generateMinorScale,
+    generateMixolydianScale,
+  } = useContext(ScalesContext)
   const { handleSubmit, register } = useForm<formValue>()
 
   function submitData(data: formValue) {
     const majorScale = generateMajorScale(data.note)
-    const pentatonicScale = generatePentatonicScale(majorScale)
 
     setScales({
       major: majorScale,
-      pentatonic: pentatonicScale,
+      pentatonic: generatePentatonicScale(majorScale),
+      dorian: generateDorianScale(majorScale),
+      mixolydian: generateMixolydianScale(majorScale),
+      minor: generateMinorScale(majorScale),
     })
   }
 
@@ -36,7 +46,7 @@ export function KeyForm() {
           <NativeSelectField
             {...register("note")}
             placeholder='Select a key'
-            items={chromaticScale}
+            items={sharpenedScale}
           />
         </NativeSelectRoot>
         <Button

@@ -14,8 +14,24 @@ export function Scales() {
         justifyContent='center'
         gap='2'
         alignItems='center'>
-        <Heading>Major Scale:</Heading>
+        <Heading>Ionan / Major Scale:</Heading>
         {scales?.major.map((note) => (
+          <Text
+            shadow='sm'
+            rounded='md'
+            bgColor='gray.100'
+            padding='6px 10px'
+            key={note}>
+            {note}
+          </Text>
+        ))}
+      </Flex>
+      <Flex
+        justifyContent='center'
+        gap='2'
+        alignItems='center'>
+        <Heading>Aeolian / Minor Scale:</Heading>
+        {scales?.minor.map((note) => (
           <Text
             shadow='sm'
             rounded='md'
@@ -32,6 +48,38 @@ export function Scales() {
         alignItems='center'>
         <Heading>Pentatonic Scale:</Heading>
         {scales?.pentatonic.map((note) => (
+          <Text
+            shadow='sm'
+            rounded='md'
+            bgColor='gray.100'
+            padding='6px 10px'
+            key={note}>
+            {note}
+          </Text>
+        ))}
+      </Flex>
+      <Flex
+        justifyContent='center'
+        gap='2'
+        alignItems='center'>
+        <Heading>Dorian Scale:</Heading>
+        {scales?.dorian.map((note) => (
+          <Text
+            shadow='sm'
+            rounded='md'
+            bgColor='gray.100'
+            padding='6px 10px'
+            key={note}>
+            {note}
+          </Text>
+        ))}
+      </Flex>
+      <Flex
+        justifyContent='center'
+        gap='2'
+        alignItems='center'>
+        <Heading>Mixolydian Scale:</Heading>
+        {scales?.mixolydian.map((note) => (
           <Text
             shadow='sm'
             rounded='md'
