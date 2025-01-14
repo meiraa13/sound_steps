@@ -18,6 +18,9 @@ export function KeyForm() {
     generateDorianScale,
     generateMinorScale,
     generateMixolydianScale,
+    generateLocrianScale,
+    generateLydianScale,
+    generatePhrygianScale,
   } = useContext(ScalesContext)
   const { handleSubmit, register } = useForm<formValue>()
 
@@ -30,6 +33,9 @@ export function KeyForm() {
       dorian: generateDorianScale(majorScale),
       mixolydian: generateMixolydianScale(majorScale),
       minor: generateMinorScale(majorScale),
+      phrygian: generatePhrygianScale(majorScale),
+      lydian: generateLydianScale(majorScale),
+      locrian: generateLocrianScale(majorScale),
     })
   }
 

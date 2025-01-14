@@ -1,5 +1,4 @@
 import { Box } from "@chakra-ui/react"
-import "./styles.scss"
 import { MainHeading } from "@/components/Heading"
 import { KeyForm } from "@/components/Form"
 import { Scales } from "@/components/Scales"
@@ -11,7 +10,7 @@ import { GiMusicalScore } from "react-icons/gi"
 export function Home() {
   const { scales } = useContext(ScalesContext)
   return (
-    <Box className='home-div'>
+    <Box padding='1rem 3rem'>
       <MainHeading />
       <KeyForm />
 

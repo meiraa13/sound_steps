@@ -2,7 +2,16 @@ import { Box, IconButton, List } from "@chakra-ui/react"
 import "./styles.scss"
 import { Link } from "react-router-dom"
 import { RxHamburgerMenu } from "react-icons/rx"
-import { DrawerBackdrop, DrawerBody, DrawerCloseTrigger, DrawerContent, DrawerRoot, DrawerTrigger } from "@/components/ui/drawer"
+import {
+  DrawerBackdrop,
+  DrawerBody,
+  DrawerCloseTrigger,
+  DrawerContent,
+  DrawerHeader,
+  DrawerRoot,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
 
 export function Header() {
   return (
@@ -21,18 +30,20 @@ export function Header() {
         <Link to='/exercises'>Exercises</Link>
       </Box>
       <Box hideFrom='md'>
-        <DrawerRoot>
+        <DrawerRoot
+          placement='start'
+          size='xs'>
           <DrawerBackdrop />
           <DrawerTrigger asChild>
             <IconButton size='sm'>
               <RxHamburgerMenu />
             </IconButton>
           </DrawerTrigger>
-          <DrawerContent
-            offset='2'
-            rounded='sm'
-            padding='1rem'>
-            <DrawerBody>
+          <DrawerContent padding='1rem'>
+            <DrawerHeader>
+              <DrawerTitle>Sound Steps</DrawerTitle>
+            </DrawerHeader>
+            <DrawerBody marginTop='5'>
               <List.Root>
                 <List.Item>
                   <Link to='/'>Scales</Link>
