@@ -1,6 +1,7 @@
 import { ScalesContext } from "@/providers/ScalesContext"
-import { Box, Flex, Heading, Text } from "@chakra-ui/react"
+import { Box, Flex, Heading } from "@chakra-ui/react"
 import { useContext } from "react"
+import { NoteText } from "../NoteText"
 
 export function Scales() {
   const { scales } = useContext(ScalesContext)
@@ -14,80 +15,96 @@ export function Scales() {
         justifyContent='center'
         gap='2'
         alignItems='center'>
-        <Heading>Ionan / Major Scale:</Heading>
+        <Heading>Ionan / Major:</Heading>
         {scales?.major.map((note) => (
-          <Text
-            shadow='sm'
-            rounded='md'
-            bgColor='gray.100'
-            padding='6px 10px'
-            key={note}>
-            {note}
-          </Text>
+          <NoteText
+            note={note}
+            key={note}
+          />
         ))}
       </Flex>
       <Flex
         justifyContent='center'
         gap='2'
         alignItems='center'>
-        <Heading>Aeolian / Minor Scale:</Heading>
+        <Heading>Aeolian / Minor:</Heading>
         {scales?.minor.map((note) => (
-          <Text
-            shadow='sm'
-            rounded='md'
-            bgColor='gray.100'
-            padding='6px 10px'
-            key={note}>
-            {note}
-          </Text>
+          <NoteText
+            note={note}
+            key={note}
+          />
         ))}
       </Flex>
       <Flex
         justifyContent='center'
         gap='2'
         alignItems='center'>
-        <Heading>Pentatonic Scale:</Heading>
+        <Heading>Pentatonic:</Heading>
         {scales?.pentatonic.map((note) => (
-          <Text
-            shadow='sm'
-            rounded='md'
-            bgColor='gray.100'
-            padding='6px 10px'
-            key={note}>
-            {note}
-          </Text>
+          <NoteText
+            note={note}
+            key={note}
+          />
         ))}
       </Flex>
       <Flex
         justifyContent='center'
         gap='2'
         alignItems='center'>
-        <Heading>Dorian Scale:</Heading>
+        <Heading>Phrygian:</Heading>
+        {scales?.phrygian.map((note) => (
+          <NoteText
+            note={note}
+            key={note}
+          />
+        ))}
+      </Flex>
+      <Flex
+        justifyContent='center'
+        gap='2'
+        alignItems='center'>
+        <Heading>Locryan:</Heading>
+        {scales?.locrian.map((note) => (
+          <NoteText
+            note={note}
+            key={note}
+          />
+        ))}
+      </Flex>
+      <Flex
+        justifyContent='center'
+        gap='2'
+        alignItems='center'>
+        <Heading>Lydian:</Heading>
+        {scales?.lydian.map((note) => (
+          <NoteText
+            note={note}
+            key={note}
+          />
+        ))}
+      </Flex>
+      <Flex
+        justifyContent='center'
+        gap='2'
+        alignItems='center'>
+        <Heading>Dorian:</Heading>
         {scales?.dorian.map((note) => (
-          <Text
-            shadow='sm'
-            rounded='md'
-            bgColor='gray.100'
-            padding='6px 10px'
-            key={note}>
-            {note}
-          </Text>
+          <NoteText
+            note={note}
+            key={note}
+          />
         ))}
       </Flex>
       <Flex
         justifyContent='center'
         gap='2'
         alignItems='center'>
-        <Heading>Mixolydian Scale:</Heading>
+        <Heading>Mixolydian:</Heading>
         {scales?.mixolydian.map((note) => (
-          <Text
-            shadow='sm'
-            rounded='md'
-            bgColor='gray.100'
-            padding='6px 10px'
-            key={note}>
-            {note}
-          </Text>
+          <NoteText
+            note={note}
+            key={note}
+          />
         ))}
       </Flex>
     </Box>

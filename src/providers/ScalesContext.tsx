@@ -10,6 +10,9 @@ export interface IScales {
   dorian: string[]
   mixolydian: string[]
   minor: string[]
+  phrygian: string[]
+  lydian: string[]
+  locrian: string[]
 }
 
 interface IScalesContext {
@@ -19,6 +22,9 @@ interface IScalesContext {
   generateDorianScale: (scale: string[]) => string[]
   generateMixolydianScale: (scale: string[]) => string[]
   generateMinorScale: (scale: string[]) => string[]
+  generatePhrygianScale: (scale: string[]) => string[]
+  generateLydianScale: (scale: string[]) => string[]
+  generateLocrianScale: (scale: string[]) => string[]
   scales: null | IScales
   setScales: React.Dispatch<React.SetStateAction<IScales | null>>
 }
@@ -57,6 +63,47 @@ export function ScalesProvider({ children }: IChildren) {
     return dorianScale
   }
 
+  function generatePhrygianScale(scale: string[]) {
+    const secondPosition = findPosition(1, sharpenedScale, scale)
+    const flattenedSecond = flattenNote(secondPosition)
+    const thirdPosition = findPosition(2, sharpenedScale, scale)
+    const flattenedThird = flattenNote(thirdPosition)
+    const sixthPosition = findPosition(5, sharpenedScale, scale)
+    const flattenedSixth = flattenNote(sixthPosition)
+    const seventhPosition = findPosition(6, sharpenedScale, scale)
+    const flattenedSeventh = flattenNote(seventhPosition)
+
+    const phrygianScale = [scale[0], flattenedSecond, flattenedThird, scale[3], scale[4], flattenedSixth, flattenedSeventh]
+
+    return phrygianScale
+  }
+
+  function generateLydianScale(scale: string[]) {
+    const fourthPosition = findPosition(3, sharpenedScale, scale)
+    const augmentedFourth = sharpenNote(fourthPosition)
+
+    const lydianScale = [scale[0], scale[1], scale[2], augmentedFourth, scale[4], scale[5], scale[6]]
+
+    return lydianScale
+  }
+
+  function generateLocrianScale(scale: string[]) {
+    const secondPosition = findPosition(1, sharpenedScale, scale)
+    const flattenedSecond = flattenNote(secondPosition)
+    const thirdPosition = findPosition(2, sharpenedScale, scale)
+    const flattenedThird = flattenNote(thirdPosition)
+    const fifthPosition = findPosition(4, sharpenedScale, scale)
+    const flattenedFifth = flattenNote(fifthPosition)
+    const sixthPosition = findPosition(5, sharpenedScale, scale)
+    const flattenedSixth = flattenNote(sixthPosition)
+    const seventhPosition = findPosition(6, sharpenedScale, scale)
+    const flattenedSeventh = flattenNote(seventhPosition)
+
+    const locrianScale = [scale[0], flattenedSecond, flattenedThird, scale[3], flattenedFifth, flattenedSixth, flattenedSeventh]
+
+    return locrianScale
+  }
+
   function generateMixolydianScale(scale: string[]) {
     const seventhPosition = findPosition(6, sharpenedScale, scale)
     const flattenedSeventh = flattenNote(seventhPosition)
@@ -85,12 +132,16 @@ export function ScalesProvider({ children }: IChildren) {
     return pentatonicScale
   }
 
-  function findPosition(position: number, scaleToSearch: string[], parameterScale: string[]) {
+  function findPosition(position: number, scaleToSearch: string[], parameterScale: string[]): number {
     return scaleToSearch.indexOf(parameterScale[position])
   }
 
-  function flattenNote(position: number) {
+  function flattenNote(position: number): string {
     return position == 0 ? flattenedScale[flattenedScale.length - 1] : flattenedScale[position - 1]
+  }
+
+  function sharpenNote(position: number): string {
+    return position == sharpenedScale.length - 1 ? sharpenedScale[0] : sharpenedScale[position + 1]
   }
 
   return (
@@ -104,6 +155,9 @@ export function ScalesProvider({ children }: IChildren) {
         generateDorianScale,
         generateMinorScale,
         generateMixolydianScale,
+        generateLocrianScale,
+        generateLydianScale,
+        generatePhrygianScale,
       }}>
       {children}
     </ScalesContext.Provider>
